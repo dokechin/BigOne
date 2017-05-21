@@ -1,6 +1,6 @@
 # NAME
 
-BigOne - It's new $module
+BigOne - Rank by the objects by size in photo.
 
 # SYNOPSIS
 

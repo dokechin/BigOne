@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use BigOne;
+use Getopt::Long;
+use Pod::Usage;
+use Data::Dumper;
+
+my %options;
+
+my $parser = Getopt::Long::Parser->new(
+    config => ['no_ignore_case', 'pass_through'],
+);
+
+$parser->getoptions(
+     \%options,
+     qw( input|i=s output|o=s type|t:s help version)
+);
+
+pod2usage(1) if $options{help};
+if ($options{version}) {
+    die "bigone $BigOne::VERSION\n";
+}
+pod2usage(1) unless $options{input} || $options{output};
+
+BigOne->new(%options)->run();
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+bigone - add photo the ranking number of object size.
+
+=head1 SYNOPSIS
+
+bigone -input test.png -output output.png -type banana
+
+=cut

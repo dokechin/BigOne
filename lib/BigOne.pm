@@ -18,10 +18,10 @@ sub run{
     my $self = shift;
 
     my $image = Imager->new->read(file => $self->input);
-    my $cascade = sprintf('cascades/%s.xml', $self->type);
+    my $cascade = sprintf('./cascades/%s.xml', $self->type);
     my $detector = Image::ObjectDetect->new($cascade);
     my @objects = $detector->detect($image);
-    my $font_filename = 'fontfiles/ipagp.ttf';
+    my $font_filename = './fontfiles/ipagp.ttf';
     my $font = Imager::Font->new(file=>$font_filename)
     or die "Cannot load $font_filename: ", Imager->errstr;
 

@@ -11,7 +11,7 @@ my $bigone = BigOne->new(
 
 $bigone->run();
 
-is( true, -f "./t/output.png");
+ok( -f "./t/output.png");
 
 done_testing;
 

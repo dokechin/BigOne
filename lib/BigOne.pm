@@ -17,18 +17,19 @@ use Class::Accessor::Lite (
 sub run{
     my $self = shift;
 
-    my $image = Imager->new->read(file => $self->input);
+    my $image = Imager->new(file => $self->input);
     my $cascade = sprintf('./cascades/%s.xml', $self->type);
     my $detector = Image::ObjectDetect->new($cascade);
-    my @objects = $detector->detect($image);
+    my @objects = $detector->detect($self->input);
     my $font_filename = './fontfiles/ipagp.ttf';
-    my $font = Imager::Font->new(file=>$font_filename)
+    my $font = Imager::Font->new(file => $font_filename)
     or die "Cannot load $font_filename: ", Imager->errstr;
 
-    my @sorted = sort{ $a->width * $a->height <=> $b->width * $b->height}@objects;
+    my @sorted = sort{ $a->{width} * $a->{height} <=> $b->{width} * $b->{height}}@objects;
     my $rank = 1;
     for my $object (@sorted){
-        $font->align(string => $rank++,
+        $font->align(
+               string => $rank++,
                size => 12,
                color => 'red',
                x => $object->{x},
@@ -36,9 +37,9 @@ sub run{
                halign => 'center',
                valign => 'center',
                image => $image);
-}
+    }
 
-$image->write(file => $self->output);  
+    $image->write(file => $self->output);  
 
 }
 

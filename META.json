@@ -52,5 +52,16 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/dokechin/BigOne/issues"
+      },
+      "homepage" : "https://github.com/dokechin/BigOne",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/dokechin/BigOne.git",
+         "web" : "https://github.com/dokechin/BigOne"
+      }
+   },
    "version" : "0.01"
 }

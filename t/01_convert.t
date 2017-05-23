@@ -1,17 +1,21 @@
 use strict;
 use Test::More 0.98;
 use BigOne;
+use Cwd 'abs_path';
 
-unlink("./t/output.png");
+my $input = abs_path("./t/children.jpg");
+my $output = abs_path("./t/output.jpg");
+
+unlink($output);
 
 my $bigone = BigOne->new(
-    {input  => './t/banana.png',
-     output => './t/output.png',
-     type   => "banana"});
+    {input  => $input,
+     output => $output,
+     type   => "haarcascade_mcs_mouth"});
 
 $bigone->run();
 
-ok( -f "./t/output.png");
+ok( -f $output);
 
 done_testing;
 
